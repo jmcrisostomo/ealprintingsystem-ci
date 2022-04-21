@@ -36,6 +36,15 @@ $routes->get('/login', 'Home::login');
 $routes->get('/products', 'Home::products');
 $routes->get('/login', 'Home::login');
 
+// Auth
+$routes->post('/auth/login', 'Auth::login');
+$routes->get('/auth/logout', 'Auth::logout');
+
+
+//Admin
+$routes->get('/admin/dashboard', 'Admin::index');
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

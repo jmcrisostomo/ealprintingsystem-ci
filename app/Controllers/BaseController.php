@@ -8,6 +8,8 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use CodeIgniter\Config\Services;
+use CodeIgniter\Config\Database;
 
 /**
  * Class BaseController
@@ -47,6 +49,24 @@ class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
 
-        // E.g.: $this->session = \Config\Services::session();
+        $this->session = \Config\Services::session();
+        $this->db = \Config\Database::connect();
+    }
+
+    public function checkSessionAdmin ()
+    {
+        $session = session();
+        if ($session->has('user_id') && $session->get('user_type') == 'ADMIN')
+        {
+            return redirect('admin', 'refresh');
+        }
+        else if ($session->has('user_id') && $session->get('user_type') == 'CUSTOMER') 
+        {
+            return redirect('products', 'refresh');
+        }
+        else
+        {
+            return redirect('login', 'refresh');
+        }
     }
 }
