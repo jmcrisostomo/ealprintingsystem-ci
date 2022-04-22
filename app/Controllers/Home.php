@@ -7,7 +7,8 @@ class Home extends BaseController
     
     public function index()
     {
-        return view('welcome_message');
+        $data['meta_page'] = 'Login';
+        return view('login', $data);
     }
     public function login()
     {

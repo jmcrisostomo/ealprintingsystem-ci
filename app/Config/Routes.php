@@ -42,7 +42,8 @@ $routes->get('/auth/logout', 'Auth::logout');
 
 
 //Admin
-$routes->get('/admin/dashboard', 'Admin::index');
+$routes->get('/admin', 'Admin::index');
+$routes->get('/admin/dashboard', 'Admin::dashboard');
 
 
 /*
