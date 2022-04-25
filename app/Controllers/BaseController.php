@@ -37,7 +37,7 @@ class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
+    protected $helpers = ['url'];
 
     /**
      * Constructor.
@@ -51,22 +51,6 @@ class BaseController extends Controller
 
         $this->session = \Config\Services::session();
         $this->db = \Config\Database::connect();
-    }
 
-    public function checkSessionAdmin ()
-    {
-        $session = session();
-        if ($session->has('user_id') && $session->get('user_type') == 'ADMIN')
-        {
-            return redirect('admin', 'refresh');
-        }
-        else if ($session->has('user_id') && $session->get('user_type') == 'CUSTOMER') 
-        {
-            return redirect('products', 'refresh');
-        }
-        else
-        {
-            return redirect('login', 'refresh');
-        }
     }
 }

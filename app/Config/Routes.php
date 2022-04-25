@@ -34,7 +34,6 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('/login', 'Home::login');
 $routes->get('/products', 'Home::products');
-$routes->get('/login', 'Home::login');
 
 // Auth
 $routes->post('/auth/login', 'Auth::login');
@@ -42,9 +41,21 @@ $routes->get('/auth/logout', 'Auth::logout');
 
 
 //Admin
-$routes->get('/admin', 'Admin::index');
-$routes->get('/admin/dashboard', 'Admin::dashboard');
+// $routes->get('/admin', 'Admin::index');
+// $routes->get('/admin/dashboard', 'Admin::dashboard');
 
+
+$routes->group('', ['filter' => 'checkSessionAdmin'], function ($routes){
+    $routes->get('/admin', 'Admin::index');
+    $routes->get('/admin/dashboard', 'Admin::dashboard');
+
+    $routes->get('/admin/product', 'Admin::show_product');
+    $routes->post('/admin/product/add', 'Admin::create_product');
+    $routes->post('/admin/product/edit', 'Admin::update_product');
+    $routes->post('/admin/product/remove', 'Admin::delete_product');
+
+
+});
 
 /*
  * --------------------------------------------------------------------
