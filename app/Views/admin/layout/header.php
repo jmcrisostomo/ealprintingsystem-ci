@@ -15,7 +15,7 @@
 
     <!-- <link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.html" /> -->
 
-    <title>Sign In</title>
+    <title><?= $meta_page ? 'E.A.L Printing Services - ' .$meta_page : 'E.A.L Printing Services' ?></title>
 
     <link href="<?= base_url('assets/admin/css/app.css') ?>" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">

@@ -50,9 +50,9 @@ $routes->group('', ['filter' => 'checkSessionAdmin'], function ($routes){
     $routes->get('/admin/dashboard', 'Admin::dashboard');
 
     $routes->get('/admin/product', 'Admin::show_product');
-    $routes->post('/admin/product/add', 'Admin::create_product');
-    $routes->post('/admin/product/edit', 'Admin::update_product');
-    $routes->post('/admin/product/remove', 'Admin::delete_product');
+    $routes->post('/admin/product/add', 'Product::create_product');
+    $routes->post('/admin/product/edit', 'Product::update_product');
+    $routes->post('/admin/product/remove', 'Product::delete_product');
 
 
 });
