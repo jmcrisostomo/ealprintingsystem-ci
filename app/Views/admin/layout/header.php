@@ -18,9 +18,14 @@
     <title><?= $meta_page ? 'E.A.L Printing Services - ' .$meta_page : 'E.A.L Printing Services' ?></title>
 
     <link href="<?= base_url('assets/admin/css/app.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/admin/css/admin.css') ?>" rel="stylesheet">
+
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/fontawesome.min.css') ?>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        let base_url = '<?= base_url(); ?>';
+    </script>
 </head>
 
 <body>

@@ -48,11 +48,22 @@ $routes->get('/auth/logout', 'Auth::logout');
 $routes->group('', ['filter' => 'checkSessionAdmin'], function ($routes){
     $routes->get('/admin', 'Admin::index');
     $routes->get('/admin/dashboard', 'Admin::dashboard');
-
+    
+    // PRODUCT FUNCTIONS
     $routes->get('/admin/product', 'Admin::show_product');
+
     $routes->post('/admin/product/add', 'Product::create_product');
+    $routes->get('/admin/product/all', 'Product::read_product');
     $routes->post('/admin/product/edit', 'Product::update_product');
     $routes->post('/admin/product/remove', 'Product::delete_product');
+
+    // CATEGORY FUNCTIONS
+    $routes->get('/admin/category', 'Admin::show_product_category');
+
+    $routes->post('/admin/category/add', 'Category::read_category');
+    $routes->get('/admin/category/all', 'Category::create_category');
+    $routes->post('/admin/category/edit', 'Category::update_category');
+    $routes->post('/admin/category/remove', 'Category::delete_category');
 
 
 });
