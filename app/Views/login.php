@@ -3,7 +3,6 @@
 <main class="d-flex w-100">
 
     <style type="text/css">
-<<<<<<< HEAD
     .loginbg {
         position: fixed;
         background-image: url(http://ealprintingsystem-ci.test/assets/img/bg/login_background.jpg);
@@ -25,27 +24,6 @@
         box-shadow: #9e9e9e 0px 0px 35px 20px;
         border-radius: 15px;
     }
-=======
-        .loginbg
-        {
-                position: fixed;
-                background-image: url(http://ealprintingsystem-ci.test/assets/img/bg/login_background.jpg);
-                height: 100%;
-                width: 100%;
-                background-attachment: fixed;
-                background-color: rgb(0 0 0 / 45%);
-                background-blend-mode: overlay;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                z-index: -1;
-        }
-        .card {
-            background: transparent;
-    box-shadow: #9e9e9e 0px 0px 35px 20px;
-    border-radius: 15px;
-        }
->>>>>>> 0a6e59004cb223139fd61d8e3a55823128b95fb9
     </style>
 
     <!-- image background -->
