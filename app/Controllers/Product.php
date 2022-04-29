@@ -24,18 +24,18 @@ class Product extends BaseController
                 {
                     $productState = '<span class="badge bg-primary">'.$product->state.'</span>';
                     $actionButton = [
-                        '<button class="btn btn-primary btn-sm me-1">VIEW</button>',
-                        '<button class="btn btn-primary btn-sm me-1">ADD STOCK</button>',
-                        '<button class="btn btn-warning btn-sm">DISABLE</button>',
+                        '<button id="btnView_'.$product->product_id.'" class="btn btn-primary btn-sm me-1">VIEW</button>',
+                        '<button id="btnAddStock_'.$product->product_id.'" class="btn btn-primary btn-sm me-1">ADD STOCK</button>',
+                        '<button id="btnDisable_'.$product->product_id.'" class="btn btn-warning btn-sm">DISABLE</button>',
                     ];
                 }
                 else if ($product->state == "INACTIVE") 
                 {
                     $productState = '<span class="badge bg-danger">'.$product->state.'</span>';
                     $actionButton = [
-                        '<button class="btn btn-primary btn-sm me-1">VIEW</button>',
-                        '<button class="btn btn-success btn-sm me-1">ENABLE</button>',
-                        '<button class="btn btn-danger btn-sm">DELETE</button>',
+                        '<button id="btnView_'.$product->product_id.'" class="btn btn-primary btn-sm me-1">VIEW</button>',
+                        '<button id="btnEnable_'.$product->product_id.'" class="btn btn-success btn-sm me-1">ENABLE</button>',
+                        '<button id="btnDelete_'.$product->product_id.'" class="btn btn-danger btn-sm">DELETE</button>',
                     ];
                 }
 
@@ -43,12 +43,12 @@ class Product extends BaseController
                 $actionButtonWrapper = '<div class="d-flex">'.implode($actionButton).'</div>';
 
                 $stocks = [
-                    '<span>Current: </span><span class="badge bg-primary w-25 mx-auto">'.$product->current_stock.'</span>',
-                    '<span>Ceiling: </span><span class="badge bg-primary w-25 mx-auto">'.$product->ceiling_stock.'</span>',
-                    '<span>Flooring: </span><span class="badge bg-primary w-25 mx-auto">'.$product->flooring_stock.'</span>',
+                    '<div class="d-flex mb-1">Current: <span class="badge bg-primary ms-auto">'.$product->current_stock.'</span></div>',
+                    '<div class="d-flex mb-1">Ceiling: <span class="badge bg-primary ms-auto">'.$product->ceiling_stock.'</span></div>',
+                    '<div class="d-flex mb-1">Flooring: <span class="badge bg-primary ms-auto">'.$product->flooring_stock.'</span></div>',
                 ];
 
-                $stockWrapper = '<div class="d-flex flex-column">'.implode($stocks).'</div>';
+                $stockWrapper = '<div class="d-block">'.implode($stocks).'</div>';
 
                 $dateModified = date("m/d/Y H:i A", strtotime($product->date_modified));
 
@@ -82,7 +82,7 @@ class Product extends BaseController
             }
         }
 
-        echo json_encode(['data' => $data]);
+        echo trim(json_encode($data), '[]');
     }
 
     public function create_product()

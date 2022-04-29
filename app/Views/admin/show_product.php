@@ -93,7 +93,7 @@
                                     <label for="flooring_stock" class="input-label" pattern="/^[0-9]+$/">Flooring Stock</label>
                                 </div>
                             </div>
-                            <input class="form-control" id="flooring_stock" style="" type="file" name="product_image" accept=".jpeg,.jpg,.png,.bmp,.tiff,.tif" required>
+                            <input class="form-control" id="product_image" type="file" name="product_image" accept=".jpeg,.jpg,.png,.bmp,.tiff,.tif" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -152,7 +152,8 @@
                                     <label for="flooring_stock" class="input-label" pattern="/^[0-9]+$/">Flooring Stock</label>
                                 </div>
                             </div>
-                            <input class="form-control" id="flooring_stock" style="" type="file" name="product_image" accept=".jpeg,.jpg,.png,.bmp,.tiff,.tif" required>
+                            <div class="preview-product-image"></div>
+                            <input class="form-control" id="product_image" type="file" name="product_image" accept=".jpeg,.jpg,.png,.bmp,.tiff,.tif" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -169,7 +170,12 @@
 
 
         <script>
+            let modalView;
+
             window.addEventListener('load', () => {
+
+                modalView = new bootstrap.Modal(document.getElementById('modalEditProduct'), {});
+
                 (($) => {
                     $('#dataTable').DataTable({
                         scrollY: '50vh',
@@ -182,7 +188,24 @@
                             addClassDataTableAcceptedTR();
                         },
                         deferRender: true,
-                        order: []
+                        order: [],
+                        createdRow: function(row, data, dataIndex) {
+                            // Set the data-status attribute, and add a class
+                            // $(row).find('td:eq(1)')
+                            //     .addClass('text-start');
+                            // $(row).find('td:eq(3)')
+                            //     .addClass('text-end');
+                            // $(row)
+                            //     .attr('id', 'trAccount_' + data[0].replace('TXN-', ''))
+                            //     .addClass('text-center');
+                            let doc = new DOMParser().parseFromString(data[0], "text/xml");
+                            let productId = doc.firstChild.innerHTML;
+
+                            $(".table").on("click", "#btnView_" + productId, function() {
+                                modalView.show();
+                                product.fetchProduct(productId);
+                            })
+                        }
                     });
                     let addClassDataTableAcceptedTR = () => {
                         document.querySelectorAll('#dataTable > tbody > tr')
@@ -192,6 +215,38 @@
                     }
                 })(jQuery)
             });
+
+            const product = {
+                fetchProduct: (productId) => {
+                    let req = fetch( base_url + '/admin/product/' + productId, {
+                        method: 'GET'
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data)
+                        {
+                            let modal = document.getElementById('modalEditProduct');
+                            let productName = modal.querySelector('[name="product_name"]');
+                            productName.value = data.product_name;
+                            let productDescription = modal.querySelector('[name="description"]');
+                            productDescription.innerText = data.description;
+                            let productPrice = modal.querySelector('[name="price"]');
+                            productPrice.value = data.price;
+                            let productSKU = modal.querySelector('[name="sku"]');
+                            productSKU.value = data.sku;
+                            let productCeilingStock = modal.querySelector('[name="ceiling_stock"]');
+                            productCeilingStock.value = data.ceiling_stock;
+                            let productFlooringStock = modal.querySelector('[name="flooring_stock"]');
+                            productFlooringStock.value = data.flooring_stock;
+                            let productCategorySelect = modal.querySelector('[name="category"]');
+                            productCategorySelect.options[data.category_id].selected = true;
+
+                        }
+                    })
+                    .catch(err => console.error());
+                }
+            }
         </script>
 
         <!-- <footer class="footer">

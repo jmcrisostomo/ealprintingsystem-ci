@@ -23,7 +23,7 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'https://ealprinting-ci.test/';
+    public $baseURL = 'https://ealprintingsystem-ci.test/';
 
     /**
      * --------------------------------------------------------------------------
