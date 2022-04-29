@@ -3,7 +3,7 @@
 <main class="d-flex w-100">
 
     <style type="text/css">
-        .loginbg 
+        .loginbg
         {
                 position: fixed;
                 background-image: url(http://ealprintingsystem-ci.test/assets/img/bg/login_background.jpg);
@@ -16,8 +16,6 @@
                 background-repeat: no-repeat;
                 background-size: cover;
                 z-index: -1;
-
-            /*#212529*/
         }
         .card {
             background: transparent;
