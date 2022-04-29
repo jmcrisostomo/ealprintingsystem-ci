@@ -1,14 +1,42 @@
 <?= view('admin/layout/header'); ?>
 
 <main class="d-flex w-100">
+
+    <style type="text/css">
+    .loginbg {
+        position: fixed;
+        background-image: url(http://ealprintingsystem-ci.test/assets/img/bg/login_background.jpg);
+        height: 100%;
+        width: 100%;
+        background-attachment: fixed;
+        background-color: rgb(0 0 0 / 45%);
+        background-blend-mode: overlay;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1;
+
+        /*#212529*/
+    }
+
+    .card {
+        background: transparent;
+        box-shadow: #9e9e9e 0px 0px 35px 20px;
+        border-radius: 15px;
+    }
+    </style>
+
+    <!-- image background -->
+    <div class="loginbg"></div>
+
     <div class="container d-flex flex-column">
         <div class="row vh-100">
             <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
                 <div class="d-table-cell align-middle">
 
                     <div class="text-center mt-4">
-                        <h1 class="h2">Account Login</h1>
-                        <p class="lead">
+                        <h1 class="h2 text-light">Account Login</h1>
+                        <p class="lead text-light">
                             Sign in to your account to continue
                         </p>
                     </div>
@@ -22,12 +50,12 @@
                                 </div>
                                 <form method="POST" action="<?= base_url('auth/login') ?>">
                                     <div class="mb-3">
-                                        <label class="form-label">Username</label>
+                                        <label class="form-label text-light">Username</label>
                                         <input class="form-control form-control-lg" type="text" name="username"
                                             placeholder="Enter your username" />
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label">Password</label>
+                                        <label class="form-label text-light">Password</label>
                                         <input class="form-control form-control-lg" type="password" name="password"
                                             placeholder="Enter your password" />
                                     </div>
