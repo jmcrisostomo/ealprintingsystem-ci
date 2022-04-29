@@ -39,6 +39,12 @@ class Home extends BaseController
 
     public function products()
     {
+        $getCategory = $this->db->query("SELECT * FROM tbl_category WHERE state = 'ACTIVE'");
+        $data['category_data'] = $getCategory->getResult();
+
+        $getProducts = $this->db->query("SELECT a.*, b.category_name FROM tbl_product a INNER JOIN tbl_category b ON a.category_id = b.category_id WHERE a.state = 'ACTIVE'");
+        $data['product_data'] = $getProducts->getResult();
+
         $data['meta_page'] = 'Products';
         return view('customer/products', $data);
     }

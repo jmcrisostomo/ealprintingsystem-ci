@@ -37,6 +37,7 @@ $routes->get('/products', 'Home::products');
 
 // Auth
 $routes->post('/auth/login', 'Auth::login');
+$routes->post('/auth/loginTest', 'Auth::loginTest');
 $routes->get('/auth/logout', 'Auth::logout');
 
 
