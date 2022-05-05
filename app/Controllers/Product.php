@@ -85,9 +85,59 @@ class Product extends BaseController
         echo trim(json_encode($data), '[]');
     }
 
-    public function create_product()
+    public function create_product($response = [])
     {
-        //
+        header('Content-Type: application/json');
+        
+        if ($_SERVER['REQUEST_METHOD'] != 'POST')
+        {
+            $productName   = $this->input->post('product_name');
+            $description   = $this->input->post('description');
+            $categoryID    = $this->input->post('category');
+            $price         = $this->input->post('price');
+            $sku           = $this->input->post('sku');
+            $ceilingStock  = $this->input->post('ceiling_stock');
+            $flooringStock = $this->input->post('flooring_stock');
+            
+            if (empty($productName) || empty($price)) 
+            {
+                $response = [
+                    'status_code' => 422,
+                    'status'      => 'Unprocessable entity',
+                    'message'     => 'Incomplete Fields',
+                    'description' => 'Please input the required fields',
+                ];
+                echo json_encode($response);
+                exit();
+            }
+
+            $insertData = [
+                'product_name'      => $productName,
+                'description'       => $description,
+                'category_id'       => $categoryID,
+                'price'             => $price,
+                'current_stock'     => 0,
+                'ceiling_stock'     => $ceilingStock,
+                'flooring_stock'    => $flooringStock,
+                'sku'               => $sku,
+                'product_image'     => NULL,
+                'product_image_ext' => NULL,
+            ];
+            
+            $this->db->insert('tbl_product', $insertData);
+            
+        } 
+        else
+        {
+            $response = [
+                'status_code' => 405,
+                'status'      => 'Method Not Allowed',
+                'message'     => 'Method Not Allowed',
+                'description' => 'Please use other request method',
+            ];
+            echo json_encode($response);
+            exit();
+        }
     }
 
     public function update_product()

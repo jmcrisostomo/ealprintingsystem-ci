@@ -21,7 +21,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        <table id="dataTable" class="table table-striped" style="width:100%">
+                        <table id="dataTable" class="table table-striped bg-light" style="width:100%">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -109,7 +109,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalEditProductLabel">Add Product</h5>
+                        <h5 class="modal-title" id="modalEditProductLabel">Edit Product</h5>
                     </div>
                     <div class="modal-body">
                         <div class="form">
@@ -164,8 +164,8 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script> -->
+        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script> -->
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/r-2.2.9/datatables.min.js"></script>
 
 
@@ -203,6 +203,7 @@
 
                             $(".table").on("click", "#btnView_" + productId, function() {
                                 modalView.show();
+                                
                                 product.fetchProduct(productId);
                             })
                         }

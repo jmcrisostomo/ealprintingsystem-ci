@@ -5,24 +5,24 @@
     <style type="text/css">
     .loginbg {
         position: fixed;
-        background-image: url(http://ealprintingsystem-ci.test/assets/img/bg/login_background.jpg);
+        background-image: url(<?= base_url('assets/img/bg/login_background.jpg') ?>);
         height: 100%;
         width: 100%;
         background-attachment: fixed;
-        background-color: rgb(0 0 0 / 45%);
-        background-blend-mode: overlay;
+        background-color: rgb(97 97 97 / 75%);
+        background-blend-mode: multiply;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         z-index: -1;
-
         /*#212529*/
     }
 
     .card {
-        background: transparent;
-        box-shadow: #9e9e9e 0px 0px 35px 20px;
+        background-color: rgb(255 255 255 / 5%);
+        box-shadow: #9e9e9e 0 0 25px 15px;
         border-radius: 15px;
+        margin-top: 3em;
     }
     </style>
 
@@ -45,11 +45,11 @@
                         <div class="card-body">
                             <div class="m-sm-4">
                                 <div class="text-center">
-                                    <img src="<?= base_url('assets/img/achie/EAL_LOGO.png') ?>" alt="User"
-                                        class="img-fluid rounded-circle" width="132" height="132" />
+                                    <img src="<?= base_url('assets/img/achie/illustrator/EAL_LOGO_TRANSPARENT.png') ?>" alt="User"
+                                        class="img-fluid rounded-circle" width="180" height="180" style="background-color: rgb(33 37 41 / 50%); box-shadow: #9e9e9e 0 0 15px 15px;" />
                                 </div>
-                                <form method="POST" action="<?= base_url('auth/login') ?>">
-                                    <div class="mb-3">
+                                <form class="form" method="POST" action="<?= base_url('auth/login') ?>">
+                                    <!-- <div class="mb-3">
                                         <label class="form-label text-light">Username</label>
                                         <input class="form-control form-control-lg" type="text" name="username"
                                             placeholder="Enter your username" />
@@ -58,16 +58,18 @@
                                         <label class="form-label text-light">Password</label>
                                         <input class="form-control form-control-lg" type="password" name="password"
                                             placeholder="Enter your password" />
-                                    </div>
-                                    <!-- <div>
-                                        <label class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="remember-me"
-                                                name="remember-me" checked>
-                                            <span class="form-check-label">
-                                                Remember me next time
-                                            </span>
-                                        </label>
                                     </div> -->
+
+                                    <div class="mt-5 input-control white-input-label">
+                                        <input type="text" name="username" class="input-field" placeholder="Username" required>
+                                        <label for="username" class="input-label ">Username</label>
+                                    </div>
+
+                                    <div class="mt-3 input-control white-input-label">
+                                        <input type="password" name="password" class="input-field" placeholder="Password" required>
+                                        <label for="password" class="input-label ">Password</label>
+                                    </div>
+
                                     <div class="text-center mt-3">
                                         <!-- <a href="index.html" class="btn btn-lg btn-primary">Sign in</a> -->
                                         <button type="submit" class="btn btn-lg btn-primary">Sign in</button>

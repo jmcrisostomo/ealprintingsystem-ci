@@ -43,12 +43,21 @@
     margin-bottom: 1.25rem;
 }
 
+.form .white-input-label .input-label{
+    background: transparent !important;
+    color: white !important;
+}
+
+.form .white-input-label .input-field{
+    color: white !important;
+}
+
 .form .input-label {
     position: absolute;
     font-family: inherit;
     font-size: 18px;
-    /* font-size: 1rem; */
-    font-weight: 400;
+    /*font-size: 1rem;
+    */font-weight: 400;
     line-height: inherit;
     left: 1rem;
     top: 0.75rem;
@@ -56,6 +65,7 @@
     color: var(--color-gray);
     background: var(--color-white);
     transition: all 0.3s ease;
+    
 }
 
 .form .input-field {
@@ -107,6 +117,11 @@
     left: 1rem;
     z-index: 5;
     color: var(--color-blue);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
 }
 
 .form .input-field:not(:-moz-placeholder-shown).input-field:not(:focus)+.input-label {
@@ -150,4 +165,27 @@
     background: var(--color-blue);
     box-shadow: var(--shadow-medium);
     text-transform: capitalize;
+}
+
+.loginbg {
+    position: fixed;
+    background-image: url(/assets/img/bg/login_background.jpg);
+    height: 100%;
+    width: 100%;
+    background-attachment: fixed;
+    background-color: rgb(223 223 223 / 85%);
+    background-blend-mode: overlay;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+.main {
+    background: transparent;
+    /* z-index: 1; */
+}
+
+.wrapper {
+    background: transparent;
 }

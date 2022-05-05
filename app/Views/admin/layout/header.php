@@ -5,15 +5,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- <meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
-    <meta name="author" content="AdminKit"> -->
-    <!-- <meta name="keywords"
-        content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web"> -->
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title" content="E.A.L Printing Services">
+    <meta name="application-name" content="E.A.L Printing Services">
+    <meta name="msapplication-TileColor" content="#e91e63">
+    <meta name="theme-color" content="#ffffff">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="<?= base_url('assets/admin/img/icons/icon-48x48.png') ?>" />
-
-    <!-- <link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.html" /> -->
 
     <title><?= $meta_page ? 'E.A.L Printing Services - ' .$meta_page : 'E.A.L Printing Services' ?></title>
 
@@ -29,3 +32,5 @@
 </head>
 
 <body>
+    <!-- image background -->
+    <div class="loginbg"></div>
