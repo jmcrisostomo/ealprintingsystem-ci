@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-
 class Product extends BaseController
 {
 
@@ -89,15 +88,17 @@ class Product extends BaseController
     {
         header('Content-Type: application/json');
         
-        if ($_SERVER['REQUEST_METHOD'] != 'POST')
+        // print_r($this->request->getPostGet('product_name'));
+
+        if ($this->request->getMethod() == 'post')
         {
-            $productName   = $this->input->post('product_name');
-            $description   = $this->input->post('description');
-            $categoryID    = $this->input->post('category');
-            $price         = $this->input->post('price');
-            $sku           = $this->input->post('sku');
-            $ceilingStock  = $this->input->post('ceiling_stock');
-            $flooringStock = $this->input->post('flooring_stock');
+            $productName   = $this->request->getPost('product_name');
+            $description   = $this->request->getPost('description');
+            $categoryID    = $this->request->getPost('category');
+            $price         = $this->request->getPost('price');
+            $sku           = $this->request->getPost('sku');
+            $ceilingStock  = $this->request->getPost('ceiling_stock');
+            $flooringStock = $this->request->getPost('flooring_stock');
             
             if (empty($productName) || empty($price)) 
             {
@@ -124,8 +125,17 @@ class Product extends BaseController
                 'product_image_ext' => NULL,
             ];
             
-            $this->db->insert('tbl_product', $insertData);
-            
+            if ( $this->db->table('tbl_product')->insert($insertData) )
+            {
+                $response = [
+                    'status_code' => 200,
+                    'status'      => 'OK',
+                    'message'     => 'Product Created',
+                    'description' => 'Product Added',
+                ];
+                echo json_encode($response);
+                exit();
+            }
         } 
         else
         {

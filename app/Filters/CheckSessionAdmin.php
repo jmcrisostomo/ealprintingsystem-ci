@@ -31,11 +31,14 @@ class CheckSessionAdmin implements FilterInterface
         //     //     exit();
         //     // }
         // }
+        
+        // $headers = apache_request_headers();
+        // print_r($headers);
 
-        if (!$session->has('user_id'))
-        {
-            return redirect()->to(site_url(). 'home/login');
-        }
+        // if (!$session->has('user_id'))
+        // {
+        //     return redirect()->to(site_url(). 'home/login');
+        // }
         // else if ($session->get('user_type') !== 'ADMIN')
         // {
         //     return redirect()->to(site_url(). 'home/products');

@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Add Product</button>
+                        <button id="btnAddProduct" type="button" class="btn btn-primary">Add Product</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Add Product</button>
+                        <button type="button" class="btn btn-primary">Update Product</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -215,6 +215,11 @@
                             });
                     }
                 })(jQuery)
+
+                let buttonAddProduct = document.getElementById('btnAddProduct');
+                buttonAddProduct.addEventListener('click', (evt) => {
+                    product.createProduct();
+                });
             });
 
             const product = {
@@ -243,6 +248,40 @@
                             let productCategorySelect = modal.querySelector('[name="category"]');
                             productCategorySelect.options[data.category_id].selected = true;
 
+                        }
+                    })
+                    .catch(err => console.error());
+                },
+                createProduct: () => {
+                    let modal = document.getElementById('modalAddProduct');
+                    let fieldProductName = modal.querySelector('[name="product_name"]');
+                    let fieldDescription = modal.querySelector('[name="description"]');
+                    let fieldCategory = modal.querySelector('[name="category"]');
+                    let fieldPrice = modal.querySelector('[name="price"]');
+                    let fieldSKU = modal.querySelector('[name="sku"]');
+                    let fieldCeilingStock = modal.querySelector('[name="ceiling_stock"]');
+                    let fieldFlooringStock = modal.querySelector('[name="flooring_stock"]');
+
+
+                    let data = new FormData();
+                    data.append('product_name', fieldProductName.value);
+                    data.append('description', fieldDescription.value);
+                    data.append('category', fieldCategory.options[fieldCategory.selectedIndex].value);
+                    data.append('price', fieldPrice.value);
+                    data.append('sku', fieldSKU.value);
+                    data.append('ceiling_stock', fieldCeilingStock.value);
+                    data.append('flooring_stock', fieldFlooringStock.value);
+
+                    let req = fetch( base_url + '/admin/product/add', {
+                        method: 'POST', body: data
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data)
+                        {
+                            console.log(data)
+                            
+                            location.reload();
                         }
                     })
                     .catch(err => console.error());

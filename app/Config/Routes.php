@@ -54,6 +54,7 @@ $routes->group('', ['filter' => 'checkSessionAdmin'], function ($routes){
     $routes->get('/admin/product', 'Admin::show_product');
 
     $routes->post('/admin/product/add', 'Product::create_product');
+    // $routes->get('/admin/product_test/add', 'Test::create');
     $routes->get('/admin/product/all', 'Product::read_product');
     $routes->get('/admin/product/(:num)', 'Product::read_product_detail/$1');
     $routes->post('/admin/product/edit', 'Product::update_product');

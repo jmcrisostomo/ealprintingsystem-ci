@@ -41,7 +41,7 @@ class Filters extends BaseConfig
             // 'checksession'
         ],
         'after' => [
-            'toolbar',
+            // 'toolbar',
             // 'honeypot',
             // 'secureheaders',
         ],
