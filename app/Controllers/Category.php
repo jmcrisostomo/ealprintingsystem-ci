@@ -70,7 +70,52 @@ class Category extends BaseController
     
     public function create_category()
     {
-        //
+        header('Content-Type: application/json');
+
+        if ($this->request->getMethod() == 'post')
+        {
+            $categoryName   = $this->request->getPost('category_name');
+            
+            if (empty($categoryName)) 
+            {
+                $response = [
+                    'status_code' => 422,
+                    'status'      => 'Unprocessable entity',
+                    'message'     => 'Incomplete Fields',
+                    'description' => 'Please input the required fields',
+                ];
+                echo json_encode($response);
+                exit();
+            }
+
+            $insertData = [
+                'category_name' => $categoryName,
+            ];
+            
+            if ( $this->db->table('tbl_category')->insert($insertData) )
+            {
+                $response = [
+                    'status_code' => 200,
+                    'status'      => 'OK',
+                    'message'     => 'Category Created',
+                    'description' => 'Category Added',
+                ];
+                echo json_encode($response);
+                exit();
+            }
+        } 
+        else
+        {
+            $response = [
+                'status_code' => 405,
+                'status'      => 'Method Not Allowed',
+                'message'     => 'Method Not Allowed',
+                'description' => 'Please use other request method',
+            ];
+            echo json_encode($response);
+            exit();
+        }
+
     }
     public function update_category()
     {

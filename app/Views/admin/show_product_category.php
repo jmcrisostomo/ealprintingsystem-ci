@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Update Category</button>
+                        <button id="btnEditCategory" type="button" class="btn btn-primary btn">Update</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                         <p>Are you sure you want to enable <span id="textEnableCategory" class="fw-bold"></span>?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Enable</button>
+                        <button id="btnEnableCategory" type="button" class="btn btn-primary">Enable</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                         <p>Are you sure you want to disable <span id="textDisableCategory" class="fw-bold"></span>?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Disable</button>
+                        <button id="btnDisableCategory" type="button" class="btn btn-primary">Disable</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -131,10 +131,10 @@
                         <h5 class="modal-title" id="modalDeleteCategoryLabel">Delete Category</h5>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to remove <span id="textDisableCategory" class="fw-bold"></span>?</p>
+                        <p>Are you sure you want to remove <span id="textDeleteCategory" class="fw-bold"></span>?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Delete</button>
+                        <button id="btnDeleteCategory" type="button" class="btn btn-primary">Delete</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -147,177 +147,8 @@
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/r-2.2.9/datatables.min.js"></script>
 
 
-        <script>
-            let modalView;
-            let modalEnable;
-            let modalDisable;
-            let modalDelete;
-            
-            window.addEventListener('load', () => {
+        <script src="<?= base_url("assets/admin/js/show-product-category.js"); ?>"></script>
 
-                modalView = new bootstrap.Modal(document.getElementById('modalEditCategory'), {});
-                modalEnable = new bootstrap.Modal(document.getElementById('modalEnableCategory'), {});
-                modalDisable = new bootstrap.Modal(document.getElementById('modalDisableCategory'), {});
-                modalDelete = new bootstrap.Modal(document.getElementById('modalDeleteCategory'), {});
-
-                (($) => {
-                    $('#dataTable').DataTable({
-                        scrollY: '50vh',
-                        responsive: true,
-                        scrollX: true,
-                        ajax: {
-                            url: base_url + "/admin/category/all",
-                        },
-                        initComplete: function (settings, json) {
-                            addClassDataTableAcceptedTR();
-                        },
-                        deferRender: true,
-                        order: [],
-                        createdRow: function(row, data, dataIndex) {
-                            // Set the data-status attribute, and add a class
-                            // $(row).find('td:eq(1)')
-                            //     .addClass('text-start');
-                            // $(row).find('td:eq(3)')
-                            //     .addClass('text-end');
-                            // $(row)
-                            //     .attr('id', 'trAccount_' + data[0].replace('TXN-', ''))
-                            //     .addClass('text-center');
-                            let doc = new DOMParser().parseFromString(data[0], "text/xml");
-                            let categoryId = doc.firstChild.innerHTML;
-
-                            $(".table").on("click", "#btnView_" + categoryId, function() {
-                                modalView.show();
-                                category.fetchCategory(categoryId);
-                            })
-
-                            $(".table").on("click", "#btnDisable_" + categoryId, function() {
-                                modalDisable.show();
-                            })
-
-                            $(".table").on("click", "#btnEnable_" + categoryId, function() {
-                                modalEnable.show();
-                            })
-
-                            $(".table").on("click", "#btnDelete_" + categoryId, function() {
-                                modalDelete.show();
-                            })
-                        }
-                    });
-                    let addClassDataTableAcceptedTR = () => {
-                        document.querySelectorAll('#dataTable > tbody > tr')
-                            .forEach((element, index) => {
-                                element.classList.add('text-center');
-                            });
-                    }
-                })(jQuery)
-
-                let buttonAddCategory = document.getElementById('btnAddCategory');
-                buttonAddCategory.addEventListener('click', (evt) => {
-                    product.createCategory();
-                });
-            });
-
-            const category = {
-                fetchCategory: (categoryId) => {
-                    let req = fetch( base_url + '/admin/category/' + categoryId, {
-                        method: 'GET'
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data)
-                        {
-                            let modal = document.getElementById('modalEditCategory');
-                            let categoryName = modal.querySelector('[name="category_name"]');
-                            categoryName.value = data.category_name;
-                        }
-                    })
-                    .catch(err => console.error());
-                },
-                createCategory: () => {
-                    let modal = document.getElementById('modalAddCategory');
-                    let fieldProductName = modal.querySelector('[name="category_name"]');
-                    let fieldDescription = modal.querySelector('[name="description"]');
-                    let fieldCategory = modal.querySelector('[name="category"]');
-                    let fieldPrice = modal.querySelector('[name="price"]');
-                    let fieldSKU = modal.querySelector('[name="sku"]');
-                    let fieldCeilingStock = modal.querySelector('[name="ceiling_stock"]');
-                    let fieldFlooringStock = modal.querySelector('[name="flooring_stock"]');
-
-
-                    let data = new FormData();
-                    data.append('category_name', fieldProductName.value);
-                    data.append('description', fieldDescription.value);
-                    data.append('category', fieldCategory.options[fieldCategory.selectedIndex].value);
-                    data.append('price', fieldPrice.value);
-                    data.append('sku', fieldSKU.value);
-                    data.append('ceiling_stock', fieldCeilingStock.value);
-                    data.append('flooring_stock', fieldFlooringStock.value);
-
-                    let req = fetch( base_url + '/admin/product/add', {
-                        method: 'POST', body: data
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data)
-                        {
-                            console.log(data)
-                            
-                            location.reload();
-                        }
-                    })
-                    .catch(err => console.error());
-                },
-                stateCategory: (state) => {
-
-                    let modalStateCategoryLabel = document.getElementById('modalStateCategoryLabel')
-                    let contextModal = document.getElementById('contextModal')
-                    let btnStateSubmit = document.querySelector('.btn-state')
-
-                    switch (state) {
-                        case 'disable':
-
-                            modalStateCategoryLabel.innerHTML = 'Disable Category';
-                            contextModal.innerHTML = 'Are you sure you want to disable this category?';
-                            
-
-                            break;
-                    
-                        default:
-                            break;
-                    }
-                }
-            }
-        </script>
-
-        <!-- <footer class="footer">
-            <div class="container-fluid">
-                <div class="row text-muted">
-                    <div class="col-6 text-start">
-                        <p class="mb-0">
-                            <a class="text-muted" href="https://adminkit.io/"
-                                target="_blank"><strong>AdminKit</strong></a> &copy;
-                        </p>
-                    </div>
-                    <div class="col-6 text-end">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer> -->
     </div>
 </div>
 
