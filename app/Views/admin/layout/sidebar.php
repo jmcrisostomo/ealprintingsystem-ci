@@ -9,25 +9,25 @@
                 Menu
             </li>
 
-            <li class="sidebar-item active">
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="<?= base_url() ?>">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
 
-            <li class="sidebar-item active">
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="<?= base_url('admin/product') ?>">
                     <i class="align-middle" data-feather="package"></i> <span class="align-middle">Products</span>
                 </a>
             </li>
 
-            <!-- <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-profile.html">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="<?= base_url('admin/category') ?>">
+                    <i class="align-middle" data-feather="menu"></i> <span class="align-middle">Category</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
+             <!-- <li class="sidebar-item">
                 <a class="sidebar-link" href="pages-sign-in.html">
                     <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
                 </a>

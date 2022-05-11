@@ -63,8 +63,9 @@ $routes->group('', ['filter' => 'checkSessionAdmin'], function ($routes){
     // CATEGORY FUNCTIONS
     $routes->get('/admin/category', 'Admin::show_product_category');
 
-    $routes->post('/admin/category/add', 'Category::read_category');
-    $routes->get('/admin/category/all', 'Category::create_category');
+    $routes->get('/admin/category/all', 'Category::read_category');
+    $routes->get('/admin/category/(:num)', 'Category::read_category_detail/$1');
+    $routes->post('/admin/category/add', 'Category::create_category');
     $routes->post('/admin/category/edit', 'Category::update_category');
     $routes->post('/admin/category/remove', 'Category::delete_category');
 

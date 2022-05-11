@@ -25,4 +25,14 @@ class Admin extends BaseController
         
         return view('admin/show_product', $data);
     }
+
+    public function show_product_category()
+    {
+        $data['meta_page'] = 'Category';
+
+        $getQuery = $this->db->query("SELECT * FROM tbl_category WHERE state = 'ACTIVE'");
+        $data['category_data'] = $getQuery->getResult();
+        
+        return view('admin/show_product_category', $data);
+    }
 }
