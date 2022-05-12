@@ -37,22 +37,22 @@ window.addEventListener('load', () => {
 
                 $(".table").on("click", "#btnView_" + categoryId, function () {
                     modalView.show();
-                    category.editCategory(categoryId);
+                    category.editCategory(categoryId, "modalEditCategory");
                 })
 
                 $(".table").on("click", "#btnDisable_" + categoryId, function () {
                     modalDisable.show();
-                    category.fetchCategory(categoryId, "textDisableCategory");
+                    category.editCategory(categoryId);
                 })
 
                 $(".table").on("click", "#btnEnable_" + categoryId, function () {
                     modalEnable.show();
-                    category.fetchCategory(categoryId, "textEnableCategory");
+                    category.enableCategory(categoryId);
                 })
 
                 $(".table").on("click", "#btnDelete_" + categoryId, function () {
                     modalDelete.show();
-                    category.fetchCategory(categoryId, "textDeleteCategory");
+                    category.deleteCategory(categoryId);
                 })
             }
         });
@@ -76,7 +76,7 @@ window.addEventListener('load', () => {
 });
 
 const category = {
-    fetchCategory: (categoryId, modalState) => {
+    fetchCategory: (categoryId, modal) => {
         let req = fetch(base_url + '/admin/category/' + categoryId, {
             method: 'GET'
         })
@@ -84,8 +84,9 @@ const category = {
         .then(data => {
             console.log(data);
             if (data) {
-                let categoryName = document.getElementById('textEnableCategory');
-                categoryName.innerHTML = data.category_name;
+                let modal = document.getElementById(modal);
+                let categoryName = modal.querySelector('[name="category_name"]');
+                categoryName.value = data.category_name;
             }
         })
         .catch(err => console.error());
@@ -139,46 +140,46 @@ const category = {
             })
             .catch(err => console.error());
     },
-    // enableCategory: (categoryId) => {
-    //     let req = fetch(base_url + '/admin/category/' + categoryId, {
-    //             method: 'GET'
-    //         })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             if (data) {
-    //                 let categoryName = document.getElementById('textEnableCategory');
-    //                 categoryName.innerHTML = data.category_name;
-    //             }
-    //         })
-    //         .catch(err => console.error());
-    // },
-    // disableCategory: (categoryId) => {
-    //     let req = fetch(base_url + '/admin/category/' + categoryId, {
-    //             method: 'GET'
-    //         })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             if (data) {
-    //                 let categoryName = document.getElementById('textDisableCategory');
-    //                 categoryName.innerHTML = data.category_name;
-    //             }
-    //         })
-    //         .catch(err => console.error());
-    // },
-    // deleteCategory: (categoryId) => {
-    //     let req = fetch(base_url + '/admin/category/' + categoryId, {
-    //             method: 'GET'
-    //         })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data);
-    //             if (data) {
-    //                 let categoryName = document.getElementById('textDeleteCategory');
-    //                 categoryName.innerHTML = data.category_name;
-    //             }
-    //         })
-    //         .catch(err => console.error());
-    // }
+    enableCategory: (categoryId) => {
+        let req = fetch(base_url + '/admin/category/' + categoryId, {
+                method: 'GET'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data) {
+                    let categoryName = document.getElementById('textEnableCategory');
+                    categoryName.innerHTML = data.category_name;
+                }
+            })
+            .catch(err => console.error());
+    },
+    disableCategory: (categoryId) => {
+        let req = fetch(base_url + '/admin/category/' + categoryId, {
+                method: 'GET'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data) {
+                    let categoryName = document.getElementById('textDisableCategory');
+                    categoryName.innerHTML = data.category_name;
+                }
+            })
+            .catch(err => console.error());
+    },
+    deleteCategory: (categoryId) => {
+        let req = fetch(base_url + '/admin/category/' + categoryId, {
+                method: 'GET'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data) {
+                    let categoryName = document.getElementById('textDeleteCategory');
+                    categoryName.innerHTML = data.category_name;
+                }
+            })
+            .catch(err => console.error());
+    }
 }
