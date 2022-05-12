@@ -18,8 +18,11 @@ class Home extends BaseController
             return redirect()->to(site_url(). 'home/login');
         }
 
-        $data['meta_page'] = 'Login';
-        return view('login', $data);
+        // $data['meta_page'] = 'Login';
+        // return view('login', $data);
+
+        $data['meta_page'] = '';
+        return view('landing-page', $data);
     }
     public function login()
     {
