@@ -94,24 +94,10 @@ const category = {
     createCategory: () => {
         let modal = document.getElementById('modalAddCategory');
         let fieldProductName = modal.querySelector('[name="category_name"]');
-        let fieldDescription = modal.querySelector('[name="description"]');
-        let fieldCategory = modal.querySelector('[name="category"]');
-        let fieldPrice = modal.querySelector('[name="price"]');
-        let fieldSKU = modal.querySelector('[name="sku"]');
-        let fieldCeilingStock = modal.querySelector('[name="ceiling_stock"]');
-        let fieldFlooringStock = modal.querySelector('[name="flooring_stock"]');
-
 
         let data = new FormData();
         data.append('category_name', fieldProductName.value);
-        data.append('description', fieldDescription.value);
-        data.append('category', fieldCategory.options[fieldCategory.selectedIndex].value);
-        data.append('price', fieldPrice.value);
-        data.append('sku', fieldSKU.value);
-        data.append('ceiling_stock', fieldCeilingStock.value);
-        data.append('flooring_stock', fieldFlooringStock.value);
-
-        let req = fetch(base_url + '/admin/product/add', {
+        let req = fetch(base_url + '/admin/category/add', {
                 method: 'POST',
                 body: data
             })
