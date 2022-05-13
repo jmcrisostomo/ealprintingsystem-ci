@@ -51,4 +51,24 @@ class Home extends BaseController
         $data['meta_page'] = 'Products';
         return view('customer/products', $data);
     }
+    
+    public function about()
+    {
+
+        $session = $this->session;
+        if ($session->get('user_type') == 'ADMIN')
+        {
+            return redirect()->to(site_url('admin'));
+        }
+        else if ($session->get('user_type') == 'CUSTOMER') 
+        {
+            return redirect()->to(site_url(). 'home/login');
+        }
+
+        // $data['meta_page'] = 'Login';
+        // return view('login', $data);
+
+        $data['meta_page'] = '';
+        return view('about', $data);
+    }
 }

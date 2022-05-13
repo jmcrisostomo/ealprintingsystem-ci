@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('/login', 'Home::login');
 $routes->get('/products', 'Home::products');
+$routes->get('/about', 'Home::about');
 
 // Auth
 $routes->post('/auth/login', 'Auth::login');

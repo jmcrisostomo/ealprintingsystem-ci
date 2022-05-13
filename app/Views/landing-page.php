@@ -16,22 +16,14 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="{{ asset('img/banner_img_01.jpg') }}" alt="">
+                        <img class="img-fluid" src="<?= base_url('assets/img/achie/tshirt.png')?>" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
-                            <h1 class="h1 text-success"><b>Zay</b> eCommerce</h1>
-                            <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
+                            <h1 class="h1 text-success"><b>E.A.L</b> Printing</h1>
+                            <!-- <h3 class="h2">Tiny and Perfect eCommerce Template</h3> -->
                             <p>
-                                Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1).
-                                This template is 100% free provided by <a rel="sponsored" class="text-success"
-                                    href="https://templatemo.com" target="_blank">TemplateMo</a> website.
-                                Image credits go to <a rel="sponsored" class="text-success"
-                                    href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
-                                <a rel="sponsored" class="text-success" href="https://unsplash.com/"
-                                    target="_blank">Unsplash</a> and
-                                <a rel="sponsored" class="text-success" href="https://icons8.com/" target="_blank">Icons
-                                    8</a>.
+                            E.A.L Printing, also known as, Estipona Aguilar Local Printing, is a shop that does commercial printing. We print what you want to insert in your shirts, lanyards, mugs, and caps! <br> You can 100% personalize what you want, just contact us by using this website or click here if you want to inquire.
                             </p>
                         </div>
                     </div>
@@ -42,16 +34,14 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="{{ asset('img/banner_img_02.jpg') }}" alt="">
+                        <img class="img-fluid" src="<?= base_url('assets/img/achie/KEYCHAIN/277952580_510173064096913_1458359865398117063_n.jpg') ?>" alt="" style="mix-blend-mode: multiply;">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
-                            <h1 class="h1">Proident occaecat</h1>
-                            <h3 class="h2">Aliquip ex ea commodo consequat</h3>
+                            <h1 class="h1 text-success"><b>E.A.L</b> Printing</h1>
+                            <!-- <h3 class="h2">Tiny and Perfect eCommerce Template</h3> -->
                             <p>
-                                You are permitted to use this Zay CSS template for your commercial websites.
-                                You are <strong>not permitted</strong> to re-distribute the template ZIP file in any
-                                kind of template collection websites.
+                            E.A.L Printing, also known as, Estipona Aguilar Local Printing, is a shop that does commercial printing. We print what you want to insert in your shirts, lanyards, mugs, and caps! <br> You can 100% personalize what you want, just contact us by using this website or click here if you want to inquire.
                             </p>
                         </div>
                     </div>
@@ -62,16 +52,14 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="{{ asset('img/banner_img_03.jpg') }}" alt="">
+                        <img class="img-fluid" src="<?= base_url('assets/img/achie/coffee_cup.jpg') ?>" alt="" style="mix-blend-mode: multiply;">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
-                            <h1 class="h1">Repr in voluptate</h1>
-                            <h3 class="h2">Ullamco laboris nisi ut </h3>
+                            <h1 class="h1 text-success"><b>E.A.L</b> Printing</h1>
+                            <!-- <h3 class="h2">Tiny and Perfect eCommerce Template</h3> -->
                             <p>
-                                We bring you 100% free CSS templates for your websites.
-                                If you wish to support TemplateMo, please make a small contribution via PayPal or tell
-                                your friends about our website. Thank you.
+                            E.A.L Printing, also known as, Estipona Aguilar Local Printing, is a shop that does commercial printing. We print what you want to insert in your shirts, lanyards, mugs, and caps! <br> You can 100% personalize what you want, just contact us by using this website or click here if you want to inquire.
                             </p>
                         </div>
                     </div>
@@ -96,26 +84,26 @@
     <div class="row text-center pt-3">
         <div class="col-lg-6 m-auto">
             <h1 class="h1">Categories of The Month</h1>
-            <p>
+            <!-- <p>
                 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est laborum.
-            </p>
+            </p> -->
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="{{ asset('img/category_img_01.jpg') }}" class="rounded-circle img-fluid border"></a>
-            <h5 class="text-center mt-3 mb-3">Watches</h5>
+            <a href="#"><img src="<?= base_url('assets/img/achie/KEYCHAIN/277124981_3079431265642094_7735984407146512192_n.jpg'); ?>" class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3">KEYCHAIN</h5>
             <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="{{ asset('img/category_img_02.jpg') }}" class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
+            <a href="#"><img src="<?= base_url('assets/img/achie/MUGS/277460206_710912236607006_7835168526854792688_n.png'); ?>" class="rounded-circle img-fluid border"></a>
+            <h2 class="h5 text-center mt-3 mb-3">MUGS</h2>
             <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="{{ asset('img/category_img_03.jpg') }}" class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
+            <a href="#"><img src="<?= base_url('assets/img/achie/T-SHIRT/277914157_357010899807098_4176064019290240868_n.png'); ?>" class="rounded-circle img-fluid border"></a>
+            <h2 class="h5 text-center mt-3 mb-3">T-SHIRT</h2>
             <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
         </div>
     </div>
