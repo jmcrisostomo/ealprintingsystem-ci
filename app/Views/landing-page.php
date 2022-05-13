@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
-                            <h1 class="h1 text-success"><b>E.A.L</b> Printing</h1>
+                            <h1 class="h1 text-success"><b>T-Shirt</b></h1>
                             <!-- <h3 class="h2">Tiny and Perfect eCommerce Template</h3> -->
                             <p>
                             E.A.L Printing, also known as, Estipona Aguilar Local Printing, is a shop that does commercial printing. We print what you want to insert in your shirts, lanyards, mugs, and caps! <br> You can 100% personalize what you want, just contact us by using this website or click here if you want to inquire.
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
-                            <h1 class="h1 text-success"><b>E.A.L</b> Printing</h1>
+                            <h1 class="h1 text-success"><b>Keychain</b></h1>
                             <!-- <h3 class="h2">Tiny and Perfect eCommerce Template</h3> -->
                             <p>
                             E.A.L Printing, also known as, Estipona Aguilar Local Printing, is a shop that does commercial printing. We print what you want to insert in your shirts, lanyards, mugs, and caps! <br> You can 100% personalize what you want, just contact us by using this website or click here if you want to inquire.
@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
-                            <h1 class="h1 text-success"><b>E.A.L</b> Printing</h1>
+                            <h1 class="h1 text-success"><b>Mugs</b></h1>
                             <!-- <h3 class="h2">Tiny and Perfect eCommerce Template</h3> -->
                             <p>
                             E.A.L Printing, also known as, Estipona Aguilar Local Printing, is a shop that does commercial printing. We print what you want to insert in your shirts, lanyards, mugs, and caps! <br> You can 100% personalize what you want, just contact us by using this website or click here if you want to inquire.
