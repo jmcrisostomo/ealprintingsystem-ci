@@ -66,12 +66,12 @@ window.addEventListener('load', () => {
 
     let buttonAddCategory = document.getElementById('btnAddCategory');
     buttonAddCategory.addEventListener('click', (evt) => {
-        product.createCategory();
+        category.createCategory();
     });
 
     let buttonEditCategory = document.getElementById('btnEditCategory');
     buttonAddCategory.addEventListener('click', (evt) => {
-        product.createCategory();
+        category.createCategory();
     });
 });
 
