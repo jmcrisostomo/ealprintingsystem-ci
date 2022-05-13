@@ -261,6 +261,7 @@
                     let fieldSKU = modal.querySelector('[name="sku"]');
                     let fieldCeilingStock = modal.querySelector('[name="ceiling_stock"]');
                     let fieldFlooringStock = modal.querySelector('[name="flooring_stock"]');
+                    let fileProductImage = modal.querySelector('[name="product_image"]');
 
 
                     let data = new FormData();
@@ -271,6 +272,7 @@
                     data.append('sku', fieldSKU.value);
                     data.append('ceiling_stock', fieldCeilingStock.value);
                     data.append('flooring_stock', fieldFlooringStock.value);
+                    data.append('product_image', fileProductImage.files[0]);
 
                     let req = fetch( base_url + '/admin/product/add', {
                         method: 'POST', body: data

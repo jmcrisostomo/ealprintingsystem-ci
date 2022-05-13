@@ -45,7 +45,30 @@ class Home extends BaseController
         $getCategory = $this->db->query("SELECT * FROM tbl_category WHERE state = 'ACTIVE'");
         $data['category_data'] = $getCategory->getResult();
 
-        $getProducts = $this->db->query("SELECT a.*, b.category_name FROM tbl_product a INNER JOIN tbl_category b ON a.category_id = b.category_id WHERE a.state = 'ACTIVE'");
+        
+
+        if ($this->request->getGet('category'))
+        {
+            $categoryId = $this->request->getGet('category');
+            $getProducts = $this->db->query("SELECT a.*, b.category_name FROM tbl_product a INNER JOIN tbl_category b ON a.category_id = b.category_id WHERE a.state = 'ACTIVE' AND a.category_id = $categoryId");
+            
+            
+            $getCategory = $this->db->query("SELECT * FROM tbl_category WHERE state = 'ACTIVE' AND category_id = $categoryId");
+
+            $categoryName = $getCategory->getRowArray();
+            $data['breadcrumb_data'] = $categoryName['category_name'];
+
+            // if ($getProducts->getNumRows() < 1)
+            // {
+            //     return redirect()->to('/products');
+            // }
+
+        }
+        else
+        {
+            $getProducts = $this->db->query("SELECT a.*, b.category_name FROM tbl_product a INNER JOIN tbl_category b ON a.category_id = b.category_id WHERE a.state = 'ACTIVE'");
+        }
+
         $data['product_data'] = $getProducts->getResult();
 
         $data['meta_page'] = 'Products';

@@ -99,6 +99,7 @@ class Product extends BaseController
             $sku           = $this->request->getPost('sku');
             $ceilingStock  = $this->request->getPost('ceiling_stock');
             $flooringStock = $this->request->getPost('flooring_stock');
+            $imageUpload   = $this->request->getFile('product_image');
             
             if (empty($productName) || empty($price)) 
             {
@@ -112,6 +113,12 @@ class Product extends BaseController
                 exit();
             }
 
+            // file properties
+            $fileName = urldecode($imageUpload->getClientName());
+            $fileExt =  $imageUpload->getClientExtension();
+            $imageUpload->move('assets/img/products/');
+
+
             $insertData = [
                 'product_name'      => $productName,
                 'description'       => $description,
@@ -121,8 +128,8 @@ class Product extends BaseController
                 'ceiling_stock'     => $ceilingStock,
                 'flooring_stock'    => $flooringStock,
                 'sku'               => $sku,
-                'product_image'     => NULL,
-                'product_image_ext' => NULL,
+                'product_image'     => $fileName,
+                'product_image_ext' => $fileExt,
             ];
             
             if ( $this->db->table('tbl_product')->insert($insertData) )
