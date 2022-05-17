@@ -67,6 +67,8 @@ class Home extends BaseController
         else
         {
             $getProducts = $this->db->query("SELECT a.*, b.category_name FROM tbl_product a INNER JOIN tbl_category b ON a.category_id = b.category_id WHERE a.state = 'ACTIVE'");
+
+            $data['breadcrumb_data'] = NULL;
         }
 
         $data['product_data'] = $getProducts->getResult();
@@ -75,6 +77,35 @@ class Home extends BaseController
         return view('customer/products', $data);
     }
     
+    public function products_single ($productId)
+    {
+        $productId = $productId;
+
+        // $session = $this->session;
+        // if ($session->get('user_type') == 'ADMIN')
+        // {
+        //     return redirect()->to(site_url('admin'));
+        // }
+        // else if ($session->get('user_type') == 'CUSTOMER') 
+        // {
+        //     return redirect()->to(site_url(). 'home/login');
+        // }
+        $getProducts = $this->db->query("SELECT a.*, b.category_name FROM tbl_product a INNER JOIN tbl_category b ON a.category_id = b.category_id WHERE a.state = 'ACTIVE' AND a.product_id = $productId");
+        
+        //get category data
+        $categoryId = $getProducts->getRow()->category_id;
+        $productName = $getProducts->getRow()->product_name;
+        $getCategory = $this->db->query("SELECT * FROM tbl_category WHERE state = 'ACTIVE' AND category_id = $categoryId");
+
+
+        $data['meta_page'] = $productName;
+        $data['product_single'] = $getProducts->getRow();
+        $data['breadcrumb_data'] = $getCategory->getRow()->category_name;
+        $data['breadcrumb_category_id'] = $getCategory->getRow()->category_id;
+
+        return view('customer/products_single', $data);
+    }
+
     public function about()
     {
 

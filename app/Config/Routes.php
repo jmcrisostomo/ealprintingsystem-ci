@@ -60,6 +60,8 @@ $routes->group('', ['filter' => 'checkSessionAdmin'], function ($routes){
     $routes->get('/admin/product/(:num)', 'Product::read_product_detail/$1');
     $routes->post('/admin/product/edit', 'Product::update_product');
     $routes->post('/admin/product/remove', 'Product::delete_product');
+    $routes->post('/admin/product/disable', 'Product::disable_product');
+    $routes->post('/admin/product/enable', 'Product::enable_product');
 
     // CATEGORY FUNCTIONS
     $routes->get('/admin/category', 'Admin::show_product_category');
@@ -69,6 +71,9 @@ $routes->group('', ['filter' => 'checkSessionAdmin'], function ($routes){
     $routes->post('/admin/category/add', 'Category::create_category');
     $routes->post('/admin/category/edit', 'Category::update_category');
     $routes->post('/admin/category/remove', 'Category::delete_category');
+
+
+    $routes->get('/products/(:any)', 'Home::products_single/$1');
 
 
 });

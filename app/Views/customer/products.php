@@ -2,8 +2,6 @@
 
 <?= view('customer/layout/navbar') ?>
 
-
-
     <!-- Start Content -->
     <div class="container py-5">
         <div class="row">
@@ -27,7 +25,7 @@
                 <?php if ($breadcrumb_data) : ?>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page"><a href="<?= base_url('products') ?>">Products</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="<?= base_url('products') ?>">Shop</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><?= $breadcrumb_data ?></li>
                         </ol>
                     </nav>
@@ -67,12 +65,12 @@
                                             <ul class="list-unstyled">
                                                 <!-- <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li> -->
                                                 <!-- <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li> -->
-                                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                                <li><a class="btn btn-success text-white mt-2" href="<?= base_url('products/'.$product->product_id) ?>"><i class="fas fa-cart-plus"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <a href="shop-single.html" class="h3 text-decoration-none"><?= $product->product_name ?></a>
+                                        <a href="<?= base_url('products/'.$product->product_id) ?>" class="h3 text-decoration-none"><?= $product->product_name ?></a>
                                         <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                             <!-- <li>M/L/X/XL</li> -->
                                             <li class="pt-2">
@@ -100,46 +98,6 @@
                     <?php else: ?>
                         <h5>Category Empty</h5>
                     <?php endif; ?>
-
-                    <?php for ($i = 1; $i <= 9; $i++): ?>
-                        <div class="col-md-4 d-none">
-                            <div class="card mb-4 product-wap rounded-0">
-                                <div class="card rounded-0">
-                                    <img class="card-img rounded-0 img-fluid" src="<?= base_url('assets/img/shop_0'.$i.'.jpg') ?>">
-                                    <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                        <ul class="list-unstyled">
-                                            <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                                            <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                            <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <a href="shop-single.html" class="h3 text-decoration-none">Oupidatat non</a>
-                                    <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                                        <li>M/L/X/XL</li>
-                                        <li class="pt-2">
-                                            <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
-                                            <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
-                                            <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
-                                            <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
-                                            <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
-                                        </li>
-                                    </ul>
-                                    <ul class="list-unstyled d-flex justify-content-center mb-1">
-                                        <li>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-warning fa fa-star"></i>
-                                            <i class="text-muted fa fa-star"></i>
-                                            <i class="text-muted fa fa-star"></i>
-                                        </li>
-                                    </ul>
-                                    <p class="text-center mb-0">$250.00</p>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endfor; ?>
                 </div>
                 <div class="row d-none">
                     <ul class="pagination pagination-lg justify-content-end">

@@ -164,161 +164,51 @@
             </div>
         </div>
 
-        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script> -->
-        <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script> -->
-        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/r-2.2.9/datatables.min.js"></script>
 
-
-        <script>
-            let modalView;
-
-            window.addEventListener('load', () => {
-
-                modalView = new bootstrap.Modal(document.getElementById('modalEditProduct'), {});
-
-                (($) => {
-                    $('#dataTable').DataTable({
-                        scrollY: '50vh',
-                        responsive: true,
-                        scrollX: true,
-                        ajax: {
-                            url: base_url + "/admin/product/all",
-                        },
-                        initComplete: function (settings, json) {
-                            addClassDataTableAcceptedTR();
-                        },
-                        deferRender: true,
-                        order: [],
-                        createdRow: function(row, data, dataIndex) {
-                            // Set the data-status attribute, and add a class
-                            // $(row).find('td:eq(1)')
-                            //     .addClass('text-start');
-                            // $(row).find('td:eq(3)')
-                            //     .addClass('text-end');
-                            // $(row)
-                            //     .attr('id', 'trAccount_' + data[0].replace('TXN-', ''))
-                            //     .addClass('text-center');
-                            let doc = new DOMParser().parseFromString(data[0], "text/xml");
-                            let productId = doc.firstChild.innerHTML;
-
-                            $(".table").on("click", "#btnView_" + productId, function() {
-                                modalView.show();
-                                
-                                product.fetchProduct(productId);
-                            })
-                        }
-                    });
-                    let addClassDataTableAcceptedTR = () => {
-                        document.querySelectorAll('#dataTable > tbody > tr')
-                            .forEach((element, index) => {
-                                element.classList.add('text-center');
-                            });
-                    }
-                })(jQuery)
-
-                let buttonAddProduct = document.getElementById('btnAddProduct');
-                buttonAddProduct.addEventListener('click', (evt) => {
-                    product.createProduct();
-                });
-            });
-
-            const product = {
-                fetchProduct: (productId) => {
-                    let req = fetch( base_url + '/admin/product/' + productId, {
-                        method: 'GET'
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data)
-                        {
-                            let modal = document.getElementById('modalEditProduct');
-                            let productName = modal.querySelector('[name="product_name"]');
-                            productName.value = data.product_name;
-                            let productDescription = modal.querySelector('[name="description"]');
-                            productDescription.innerText = data.description;
-                            let productPrice = modal.querySelector('[name="price"]');
-                            productPrice.value = data.price;
-                            let productSKU = modal.querySelector('[name="sku"]');
-                            productSKU.value = data.sku;
-                            let productCeilingStock = modal.querySelector('[name="ceiling_stock"]');
-                            productCeilingStock.value = data.ceiling_stock;
-                            let productFlooringStock = modal.querySelector('[name="flooring_stock"]');
-                            productFlooringStock.value = data.flooring_stock;
-                            let productCategorySelect = modal.querySelector('[name="category"]');
-                            productCategorySelect.options[data.category_id].selected = true;
-
-                        }
-                    })
-                    .catch(err => console.error());
-                },
-                createProduct: () => {
-                    let modal = document.getElementById('modalAddProduct');
-                    let fieldProductName = modal.querySelector('[name="product_name"]');
-                    let fieldDescription = modal.querySelector('[name="description"]');
-                    let fieldCategory = modal.querySelector('[name="category"]');
-                    let fieldPrice = modal.querySelector('[name="price"]');
-                    let fieldSKU = modal.querySelector('[name="sku"]');
-                    let fieldCeilingStock = modal.querySelector('[name="ceiling_stock"]');
-                    let fieldFlooringStock = modal.querySelector('[name="flooring_stock"]');
-                    let fileProductImage = modal.querySelector('[name="product_image"]');
-
-
-                    let data = new FormData();
-                    data.append('product_name', fieldProductName.value);
-                    data.append('description', fieldDescription.value);
-                    data.append('category', fieldCategory.options[fieldCategory.selectedIndex].value);
-                    data.append('price', fieldPrice.value);
-                    data.append('sku', fieldSKU.value);
-                    data.append('ceiling_stock', fieldCeilingStock.value);
-                    data.append('flooring_stock', fieldFlooringStock.value);
-                    data.append('product_image', fileProductImage.files[0]);
-
-                    let req = fetch( base_url + '/admin/product/add', {
-                        method: 'POST', body: data
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data)
-                        {
-                            console.log(data)
-                            
-                            location.reload();
-                        }
-                    })
-                    .catch(err => console.error());
-                }
-            }
-        </script>
-
-        <!-- <footer class="footer">
-            <div class="container-fluid">
-                <div class="row text-muted">
-                    <div class="col-6 text-start">
-                        <p class="mb-0">
-                            <a class="text-muted" href="https://adminkit.io/"
-                                target="_blank"><strong>AdminKit</strong></a> &copy;
-                        </p>
+        <!-- modalEnableProduct -->
+        <div class="modal fade" id="modalEnableProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEnableProductLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalEnableProductLabel">Enable Product</h5>
                     </div>
-                    <div class="col-6 text-end">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
-                            </li>
-                        </ul>
+                    <div class="modal-body">
+                        <p>Are you sure you want to enable <span id="textEnableProduct" class="fw-bold"></span>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="hiddenFieldEnableProduct" name="product_id">
+                        <input type="hidden" name="state" value="ACTIVE">
+                        <button id="btnEnableProduct" type="button" class="btn btn-primary">Enable</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
-        </footer> -->
+        </div>
+
+        <!-- modalDisableProduct -->
+        <div class="modal fade" id="modalDisableProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDisableProductLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDisableProductLabel">Disable Product</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to disable <span id="textDisableProduct" class="fw-bold"></span>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="hiddenFieldDisableProduct" name="product_id">
+                        <input type="hidden" name="state" value="INACTIVE">
+                        <button id="btnDisableProduct" type="button" class="btn btn-primary">Disable</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <script src="<?= base_url("assets/admin/js/show-product.js"); ?>"></script>
+
     </div>
 </div>
 

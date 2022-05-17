@@ -166,4 +166,100 @@ class Product extends BaseController
     {
         //
     }
+
+    public function disable_product()
+    {
+        header('Content-Type: application/json');
+        if ($this->request->getMethod() == 'post')
+        {
+            $productId      = $this->request->getPost('product_id');
+            $productState   = $this->request->getPost('state');
+
+            if ($productState !== "INACTIVE")
+            {
+                $response = [
+                    'status_code' => 412,
+                    'status'      => 'Precondition Failed',
+                    'message'     => 'Invalid Value',
+                    'description' => 'Invalid Value',
+                ];
+                echo json_encode($response);
+                exit();
+            }
+
+            $builder = $this->db->table('tbl_product');
+            $builder->set('state', 'INACTIVE');
+            $builder->where('product_id', $productId);
+            if ($builder->update()) 
+            {
+                $response = [
+                    'status_code' => 200,
+                    'status'      => 'OK',
+                    'message'     => 'Product Inactive',
+                    'description' => 'Product Disabled',
+                ];
+                echo json_encode($response);
+                exit();
+            }
+        } 
+        else
+        {
+            $response = [
+                'status_code' => 405,
+                'status'      => 'Method Not Allowed',
+                'message'     => 'Method Not Allowed',
+                'description' => 'Please use other request method',
+            ];
+            echo json_encode($response);
+            exit();
+        }
+    }
+
+    public function enable_product()
+    {
+        header('Content-Type: application/json');
+        if ($this->request->getMethod() == 'post')
+        {
+            $productId      = $this->request->getPost('product_id');
+            $productState   = $this->request->getPost('state');
+
+            if ($productState !== "ACTIVE")
+            {
+                $response = [
+                    'status_code' => 412,
+                    'status'      => 'Precondition Failed',
+                    'message'     => 'Invalid Value',
+                    'description' => 'Invalid Value',
+                ];
+                echo json_encode($response);
+                exit();
+            }
+
+            $builder = $this->db->table('tbl_product');
+            $builder->set('state', 'ACTIVE');
+            $builder->where('product_id', $productId);
+            if ($builder->update()) 
+            {
+                $response = [
+                    'status_code' => 200,
+                    'status'      => 'OK',
+                    'message'     => 'Product Inactive',
+                    'description' => 'Product Disabled',
+                ];
+                echo json_encode($response);
+                exit();
+            }
+        } 
+        else
+        {
+            $response = [
+                'status_code' => 405,
+                'status'      => 'Method Not Allowed',
+                'message'     => 'Method Not Allowed',
+                'description' => 'Please use other request method',
+            ];
+            echo json_encode($response);
+            exit();
+        }
+    }
 }

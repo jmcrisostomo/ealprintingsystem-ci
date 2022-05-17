@@ -1,0 +1,105 @@
+:root {
+    --primary-theme-color: #013DA3;
+    --secondary-theme-color: #1A237E;
+    --body-bg-color: #FEFFE9;
+    --light: #FFF;
+    --dark: #010000;
+    --danger: #D5202B;
+    --dangerer: #f02849;
+    --warning: #FCD045;
+    --success: #04aa6d;
+}
+
+/* BEGIN:: TOAST NOTIFICATIONS */
+
+.pop-notifications {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    min-height: 90px;
+    max-height: 50vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.pop-notifications.show {
+    z-index: 9999;
+}
+
+.pop-notifications .toast-notif {
+    width: 90%;
+    max-width: 500px;
+    min-width: 280px;
+    height: 0;
+    margin-top: -10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--b-radius2);
+    box-sizing: border-box;
+    color: #fff;
+    opacity: 0;
+    overflow: hidden;
+    /*transition: height 0.3s linear, margin-top 0.3s linear, opacity 0.3s linear;*/
+    -webkit-transition: all 250ms ease-in-out;
+    -moz-transition: all 250ms ease-in-out;
+    -ms-transition: all 250ms ease-in-out;
+    -o-transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+
+.pop-notifications .toast-notif.toast-info {
+    background: var(--black-transparent);
+}
+
+.pop-notifications .toast-notif.toast-error {
+    background: var(--red-transparent);
+}
+
+.pop-notifications.show .toast-notif {
+    height: auto;
+    padding: 20px;
+    margin-top: 14px;
+    opacity: 1;
+}
+
+.pop-notifications.show .toast-notif p {
+    margin: 0px;
+    padding: 0px;
+}
+
+.pop-notifications.show .toast-notif p ul {
+    list-style-type: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.pop-notifications.show .toast-notif p ul li {
+    font-size: 1em;
+}
+
+.pop-notifications.show .toast-notif p ul li:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+@media only screen and (min-width: 761px) {
+    .pop-notifications.show .toast-notif p ul li {
+        font-size: 1.3em;
+    }
+    .pop-notifications.show .toast-notif p ul li:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* END:: TOAST NOTIFICATIONS */

@@ -22,6 +22,7 @@
 
     <link href="<?= base_url('assets/admin/css/app.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/admin/css/admin.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/admin/css/toast.css') ?>" rel="stylesheet">
 
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/fontawesome.min.css') ?>">
@@ -34,3 +35,8 @@
 <body>
     <!-- image background -->
     <div class="loginbg"></div>
+
+    <!-- toast -->
+    <div id="popNotifications" class="pop-notifications">
+        <div class="toast-notif"><p>Sample Message</p></div>
+    </div>
