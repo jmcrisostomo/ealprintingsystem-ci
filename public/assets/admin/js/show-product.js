@@ -99,6 +99,8 @@ const product = {
                     productFlooringStock.value = data.flooring_stock;
                     let productCategorySelect = modal.querySelector('[name="category"]');
                     productCategorySelect.options[data.category_id].selected = true;
+                    let productId = modal.querySelector('[name="product_id"]');
+                    productId.value = data.product_id;
 
                 }
             })

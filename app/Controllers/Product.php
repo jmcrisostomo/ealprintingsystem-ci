@@ -159,7 +159,81 @@ class Product extends BaseController
 
     public function update_product()
     {
-        //
+        header('Content-Type: application/json');
+        
+        // print_r($this->request->getPostGet('product_name'));
+
+        if ($this->request->getMethod() == 'post')
+        {
+            $productId     = $this->request->getPost('product_id');
+            $productName   = $this->request->getPost('product_name');
+            $description   = $this->request->getPost('description');
+            $categoryID    = $this->request->getPost('category');
+            $price         = $this->request->getPost('price');
+            $sku           = $this->request->getPost('sku');
+            $ceilingStock  = $this->request->getPost('ceiling_stock');
+            $flooringStock = $this->request->getPost('flooring_stock');
+            $imageUpload   = $this->request->getFile('product_image');
+            
+            if (empty($productName) || empty($price)) 
+            {
+                $response = [
+                    'status_code' => 422,
+                    'status'      => 'Unprocessable entity',
+                    'message'     => 'Incomplete Fields',
+                    'description' => 'Please input the required fields',
+                ];
+                echo json_encode($response);
+                exit();
+            }
+
+            // file properties
+                // $fileName = urldecode($imageUpload->getClientName());
+                // $fileExt =  $imageUpload->getClientExtension();
+                // $imageUpload->move('assets/img/products/');
+
+
+            $updateData = [
+                'product_name'      => $productName,
+                'description'       => $description,
+                'category_id'       => $categoryID,
+                'price'             => $price,
+                'current_stock'     => 0,
+                'ceiling_stock'     => $ceilingStock,
+                'flooring_stock'    => $flooringStock,
+                'sku'               => $sku,
+            ];
+            
+
+            $builder = $this->db->table('tbl_product');
+            $builder->set($updateData);
+            $builder->where('product_id', $productId);
+            if ($builder->update()) 
+            {
+                $response = [
+                    'status_code' => 200,
+                    'status'      => 'OK',
+                    'message'     => 'Product Updated',
+                    'description' => 'Product Updated',
+                ];
+                echo json_encode($response);
+                // exit();
+            }
+
+        } 
+        else
+        {
+            $response = [
+                'status_code' => 405,
+                'status'      => 'Method Not Allowed',
+                'message'     => 'Method Not Allowed',
+                'description' => 'Please use other request method',
+            ];
+            echo json_encode($response);
+            // exit();
+        }
+
+        return redirect()->to(site_url(). 'admin/product');
     }
 
     public function delete_product()
@@ -260,6 +334,42 @@ class Product extends BaseController
             ];
             echo json_encode($response);
             exit();
+        }
+    }
+
+
+    public function add_to_cart ()
+    {
+        $productId      = $this->request->getPost('product-id');
+        $productName    = $this->request->getPost('product-name');
+        $productColor   = $this->request->getPost('product-color');
+        $productSize    = $this->request->getPost('product-size');
+        $quantity       = $this->request->getPost('product-quanity');
+        $totalPrice     = $this->request->getPost('total-price');
+        $defaultPrice   = $this->request->getPost('default-price');
+
+        $insertData = [
+            'product_id'        => $productId,
+            'user_id'           => $this->session->get('user_id'),
+            'quantity'          => $quantity,
+            'size'              => $productSize,
+            'color'             => $productColor,
+            'price'             => $quantity * $defaultPrice,
+        ];
+        
+        if ( $this->db->table('tbl_cart')->insert($insertData) )
+        {
+            // $response = [
+            //     'status_code' => 200,
+            //     'status'      => 'OK',
+            //     'message'     => 'Product Created',
+            //     'description' => 'Product Added',
+            // ];
+            // echo json_encode($response);
+            // exit();
+
+            return redirect()->to(site_url(). 'cart');
+
         }
     }
 }
