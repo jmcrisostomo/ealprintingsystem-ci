@@ -1,12 +1,14 @@
 let modalView;
 let modalEnable;
 let modalDisable;
+let modalDelete;
 
 window.addEventListener('load', () => {
 
     modalView = new bootstrap.Modal(document.getElementById('modalEditProduct'), {});
     modalEnable = new bootstrap.Modal(document.getElementById('modalEnableProduct'), {});
     modalDisable = new bootstrap.Modal(document.getElementById('modalDisableProduct'), {});
+    modalDelete = new bootstrap.Modal(document.getElementById('modalDeleteProduct'), {});
 
     (($) => {
         $('#dataTable').DataTable({
@@ -47,6 +49,11 @@ window.addEventListener('load', () => {
                 $(".table").on("click", "#btnDisable_" + productId, function () {
                     modalDisable.show();
                     product.disableProduct(productId)
+                })
+
+                $(".table").on("click", "#btnDelete_" + productId, function () {
+                    modalDelete.show();
+                    product.deleteProduct(productId)
                 })
             }
         });
@@ -180,6 +187,25 @@ const product = {
             
     },
 
+    deleteProduct: (productId) => {
+        let req = fetch(base_url + '/admin/product/' + productId, {
+                method: 'GET'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data) {
+                    let productName = document.getElementById('textDeleteProduct');
+                    let hiddenFieldDeleteProduct = document.getElementById('hiddenFieldDeleteProduct');
+                    productName.innerHTML = data.product_name;
+                    hiddenFieldDeleteProduct.value = productId;
+                }
+            })
+            .catch(err => console.error());
+
+            
+    },
+
     requestEnableProduct: () => {
         let productNumber = document.getElementById('modalEnableProduct').querySelector('[name="product_id"]');
         let productState = document.getElementById('modalEnableProduct').querySelector('[name="state"]');
@@ -217,4 +243,5 @@ const product = {
         })
         .catch(err => console.error());
     },
+
 }

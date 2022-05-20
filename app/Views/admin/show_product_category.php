@@ -65,6 +65,7 @@
         </div>
 
         <!-- modalEditCategory -->
+        <form action="<?= base_url('/admin/category/edit') ;?>" method="POST">
         <div class="modal fade" id="modalEditCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEditCategoryLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -77,15 +78,17 @@
                                 <input type="text" name="category_name" class="input-field" placeholder="Category Name" required>
                                 <label for="category_name" class="input-label">Category Name</label>
                             </div>
+                            <input type="hidden" name="category_id" >
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="btnEditCategory" type="button" class="btn btn-primary btn">Update</button>
+                        <button id="btnEditCategory" type="submit" class="btn btn-primary btn">Update</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
+        </form>
 
         <!-- modalEnableCategory -->
         <div class="modal fade" id="modalEnableCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalEnableCategoryLabel" aria-hidden="true">
@@ -124,6 +127,7 @@
         </div>
 
         <!-- modalDeleteCategory -->
+        <form action="<?= base_url('/admin/category/remove') ;?>" method="POST">
         <div class="modal fade" id="modalDeleteCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDeleteCategoryLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -132,13 +136,15 @@
                     </div>
                     <div class="modal-body">
                         <p>Are you sure you want to remove <span id="textDeleteCategory" class="fw-bold"></span>?</p>
+                        <input type="hidden" name="category_id" >
                     </div>
                     <div class="modal-footer">
-                        <button id="btnDeleteCategory" type="button" class="btn btn-primary">Delete</button>
+                        <button id="btnDeleteCategory" type="submit" class="btn btn-primary">Delete</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         
         <script src="<?= base_url("assets/admin/js/show-product-category.js"); ?>"></script>

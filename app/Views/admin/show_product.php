@@ -208,6 +208,26 @@
             </div>
         </div>
 
+        <!-- modalDeleteProduct -->
+        <form action="<?= base_url('/admin/product/remove') ;?>" method="POST">
+        <div class="modal fade" id="modalDeleteProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalDeleteProductLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalDeleteProductLabel">Delete Product</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete <span id="textDeleteProduct" class="fw-bold"></span>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="hiddenFieldDeleteProduct" name="product_id">
+                        <button id="btnDisableProduct" type="submit" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
         
 
         <script src="<?= base_url("assets/admin/js/show-product.js"); ?>"></script>

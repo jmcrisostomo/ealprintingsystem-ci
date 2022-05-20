@@ -122,6 +122,8 @@ const category = {
                     let modal = document.getElementById('modalEditCategory');
                     let categoryName = modal.querySelector('[name="category_name"]');
                     categoryName.value = data.category_name;
+                    let categoryId = modal.querySelector('[name="category_id"]');
+                    categoryId.value = data.category_id;
                 }
             })
             .catch(err => console.error());
@@ -162,8 +164,11 @@ const category = {
             .then(data => {
                 console.log(data);
                 if (data) {
+                    let modal = document.getElementById('modalDeleteCategory');
                     let categoryName = document.getElementById('textDeleteCategory');
                     categoryName.innerHTML = data.category_name;
+                    let categoryId = modal.querySelector('[name="category_id"]');
+                    categoryId.value = data.category_id;
                 }
             })
             .catch(err => console.error());

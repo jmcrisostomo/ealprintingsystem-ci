@@ -24,7 +24,7 @@ class Category extends BaseController
                     $categoryState = '<span class="badge bg-primary">'.$category->state.'</span>';
                     $actionButton = [
                         '<button id="btnView_'.$category->category_id.'" class="btn btn-primary btn-sm me-1">VIEW</button>',
-                        '<button id="btnDisable_'.$category->category_id.'" class="btn btn-warning btn-sm">DISABLE</button>',
+                        '<button id="btnDelete_'.$category->category_id.'" class="btn btn-danger btn-sm">DELETE</button>',
                     ];
                 }
                 else if ($category->state == "INACTIVE") 
@@ -119,10 +119,78 @@ class Category extends BaseController
     }
     public function update_category()
     {
-        //
+        header('Content-Type: application/json');
+        if ($this->request->getMethod() == 'post')
+        {
+            $categoryId     = $this->request->getPost('category_id');
+            $categoryName   = $this->request->getPost('category_name');
+
+            $updateData = [
+                'category_name' => $categoryName,
+            ];
+
+
+            $builder = $this->db->table('tbl_category');
+            $builder->set($updateData);
+            $builder->where('category_id', $categoryId);
+            if ($builder->update()) 
+            {
+                $response = [
+                    'status_code' => 200,
+                    'status'      => 'OK',
+                    'message'     => 'Category Updated',
+                    'description' => 'Category Updated',
+                ];
+                echo json_encode($response);
+                // exit();
+            }
+        } 
+        else
+        {
+            $response = [
+                'status_code' => 405,
+                'status'      => 'Method Not Allowed',
+                'message'     => 'Method Not Allowed',
+                'description' => 'Please use other request method',
+            ];
+            echo json_encode($response);
+            // exit();
+        }
+        return redirect()->to(site_url(). 'admin/category');
     }
     public function delete_category()
     {
-        //
+        header('Content-Type: application/json');
+        if ($this->request->getMethod() == 'post')
+        {
+            $categoryId     = $this->request->getPost('category_id');
+
+
+            $builder = $this->db->table('tbl_category');
+            $builder->where('category_id', $categoryId);
+            if ($builder->delete()) 
+            {
+                $response = [
+                    'status_code' => 200,
+                    'status'      => 'OK',
+                    'message'     => 'Category DELETED',
+                    'description' => 'Category DELETED',
+                ];
+                echo json_encode($response);
+                // exit();
+            }
+        } 
+        else
+        {
+            $response = [
+                'status_code' => 405,
+                'status'      => 'Method Not Allowed',
+                'message'     => 'Method Not Allowed',
+                'description' => 'Please use other request method',
+            ];
+            echo json_encode($response);
+            // exit();
+        }
+        return redirect()->to(site_url(). 'admin/category');
     }
 }
