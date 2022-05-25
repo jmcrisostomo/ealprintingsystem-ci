@@ -71,7 +71,7 @@ window.addEventListener('load', () => {
 
     let buttonEditCategory = document.getElementById('btnEditCategory');
     buttonAddCategory.addEventListener('click', (evt) => {
-        category.createCategory();
+        category.editCategory();
     });
 });
 

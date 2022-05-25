@@ -92,17 +92,16 @@ class Category extends BaseController
                 'category_name' => $categoryName,
             ];
             
-            if ( $this->db->table('tbl_category')->insert($insertData) )
-            {
-                $response = [
-                    'status_code' => 200,
-                    'status'      => 'OK',
-                    'message'     => 'Category Created',
-                    'description' => 'Category Added',
-                ];
-                echo json_encode($response);
-                exit();
-            }
+            $this->db->table('tbl_category')->insert($insertData);
+
+            $response = [
+                'status_code' => 200,
+                'status'      => 'OK',
+                'message'     => 'Category Created',
+                'description' => 'Category Added',
+            ];
+            echo json_encode($response);
+            exit();
         } 
         else
         {

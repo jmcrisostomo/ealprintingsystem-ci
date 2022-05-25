@@ -187,8 +187,8 @@
                             <input type="hidden" name="product-color" value="Black">
                             <input type="hidden" name="product-size" id="product-size" value="S">
                             <input type="hidden" name="product-quanity" id="product-quanity" value="1">
-                            <input type="hidden" name="default-price" value="<?= number_format($product_single->price, 2, '.', ',') ?>">
-                            <input type="hidden" name="total-price" value="<?= number_format($product_single->price, 2, '.', ',') ?>">
+                            <input type="hidden" name="default-price" value="<?= number_format($product_single->price, 2, '.', '') ?>">
+                            <input type="hidden" name="total-price" value="<?= number_format($product_single->price, 2, '.', '') ?>">
 
                             <div class="row">
                                 <div class="col-auto">
@@ -238,51 +238,6 @@
 </section>
 <!-- Close Content -->
 
-<script>
-    let btnColor = document.querySelectorAll('.btn-color');
-    btnColor.forEach((elem) => {
-        
-        elem.addEventListener('click', () => {
-            btnColor.forEach((elem2) => {
-                elem2.classList.add('btn-success');
-            });
-
-            if (elem.classList.contains('btn-success'))
-            {
-                elem.classList.remove('btn-success');
-                elem.classList.add('btn-secondary');
-            }
-
-            console.log(elem.innerHTML);
-            document.querySelector('[name="product-color"]').value = elem.innerHTML;
-        });
-    });
-
-    let btnQuantityPlus = document.querySelector('#btn-plus');
-    btnQuantityPlus.addEventListener('click', () => {
-        let defaultPrice = document.querySelector('[name="default-price"]').value;
-        let quantity = document.querySelector('#var-value').innerHTML;
-
-        let total = defaultPrice * quantity;
-
-        console.log(quantity);
-
-        document.querySelector('.price').innerHTML = total.toFixed(2);
-        document.querySelector('[name="total-price"]').value = total.toFixed(2);
-    });
-
-    let btnQuantityMinus = document.querySelector('#btn-minus');
-    btnQuantityMinus.addEventListener('click', () => {
-        let defaultPrice = document.querySelector('[name="default-price"]').value;
-        let quantity = document.querySelector('#var-value').innerHTML;
-        // let quantity = document.querySelector('[name="product-quanity"]').value;
-
-        let total = defaultPrice * quantity;
-        document.querySelector('.price').innerHTML = total.toFixed(2);
-        document.querySelector('[name="total-price"]').value = total.toFixed(2);
-    });
-
-</script>
-
+<script src="<?= base_url('assets/js/cart.js') ;?>"></script>
 
 <?= view('customer/layout/footer') ?>
