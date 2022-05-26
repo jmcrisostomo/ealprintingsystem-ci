@@ -114,7 +114,7 @@ class Home extends BaseController
         {
             $userId = $session->has('user_id');
             $getCart = $this->db->query("SELECT a.*, b.product_name, b.product_image, b.price as default_price FROM tbl_cart a INNER JOIN tbl_product b ON a.product_id = b.product_id WHERE user_id = $userId");
-            $data['cart_data'] = $getCart;
+            $data['cart_data'] = $getCart->getResult();
         }
         else
         {

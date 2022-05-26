@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-12">
 
-                <?php if($cart_data->getResult()) : ?>
+                <?php if($cart_data) : ?>
                     <h1 class="mt-5">Cart</h1>
 
                     <table class="table">
@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($cart_data->getResult() as $product) : ?>
+                        <?php foreach ($cart_data as $product) : ?>
                             <tr>
                                 <td>
                                     <img class="img-fluid" style="width: 150px;" src="<?= base_url('assets/img/products/'.$product->product_image) ?>">
