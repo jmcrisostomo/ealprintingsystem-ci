@@ -388,19 +388,22 @@ class Product extends BaseController
             'price'             => $quantity * $defaultPrice,
         ];
         
-        if ( $this->db->table('tbl_cart')->insert($insertData) )
-        {
-            // $response = [
-            //     'status_code' => 200,
-            //     'status'      => 'OK',
-            //     'message'     => 'Product Created',
-            //     'description' => 'Product Added',
-            // ];
-            // echo json_encode($response);
-            // exit();
+        $this->db->table('tbl_cart')->insert($insertData);
+        return redirect()->to(site_url(). 'cart');
 
-            return redirect()->to(site_url(). 'cart');
+        // if ( $this->db->table('tbl_cart')->insert($insertData) )
+        // {
+        //     // $response = [
+        //     //     'status_code' => 200,
+        //     //     'status'      => 'OK',
+        //     //     'message'     => 'Product Created',
+        //     //     'description' => 'Product Added',
+        //     // ];
+        //     // echo json_encode($response);
+        //     // exit();
 
-        }
+        //     return redirect()->to(site_url(). 'cart');
+
+        // }
     }
 }
