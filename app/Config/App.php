@@ -23,7 +23,8 @@ class App extends BaseConfig
      *
      * @var string
      */
-    public $baseURL = 'https://ealprintingsystem-ci.test/';
+    // public $baseURL = 'https://ealprintingsystem-ci.test/';
+    public $baseURL = 'https://test-app-ci4.herokuapp.com/';
 
     /**
      * --------------------------------------------------------------------------
